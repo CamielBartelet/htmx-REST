@@ -1,0 +1,6 @@
+{
+	"ignore": ["node_modules"],
+	"watch": ["components", "mock-data", "api"],
+	"exec": "npx ts-node app.ts",
+	"ext": "ts"
+}

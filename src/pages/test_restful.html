@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/htmx.org@1.9.4" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/debug.js"></script>
+</head>
+
+<body>
+    <div hx-get="http://localhost:5000/items" hx-target="#result">Get items</div>
+    <form id="addForm" hx-post="http://localhost:5000/items" hx-target="#feedback-div" hx-trigger="submit">
+        <input type="text" name="name" hx-sync="closest form:abort">
+    </form>
+    <button type="submit" hx-post="http://localhost:5000/items" hx-include="#addForm">Post item</button>
+    <div hx-delete="http://localhost:5000/items/3" hx-target="#result">Delete items</div>
+    <div hx-update="http://localhost:5000/items/2" hx-target="#result">Update items</div>
+    <div hx-get="http://localhost:5000/items/1" hx-target="#result">Get item</div>
+    <div id="feedback-div" style="display: none"></div>
+    <div id="result"></div>
+</body>
+
+</html>

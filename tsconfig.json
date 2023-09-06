@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": [ "es2015" ],
+    "types": ["node"]
+  },
+  "ts-node": {
+      "swc": true
+    }
+}

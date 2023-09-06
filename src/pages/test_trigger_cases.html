@@ -1,0 +1,55 @@
+<html>
+    <head>
+      <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+        <style>
+            .demo.faded {
+              opacity: 0.3;
+            }
+            .demo {
+              opacity: 1;
+              transition: opacity ease-in 900ms;
+            }
+            @keyframes fade-in {
+              from { opacity: 0; }
+            }
+         
+            @keyframes fade-out {
+              to { opacity: 0; }
+            }
+         
+            @keyframes slide-from-right {
+              from { transform: translateX(90px); }
+            }
+         
+            @keyframes slide-to-left {
+              to { transform: translateX(-90px); }
+            }
+         
+            #slide-it {
+              view-transition-name: slide-it;
+            }
+         
+            ::view-transition-old(slide-it) {
+              animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+              600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+            }
+            ::view-transition-new(slide-it) {
+              animation: 420ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+              600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+            }
+        </style>
+    </head>
+    <body>
+        <button hx-get="http://localhost:3000/components/object">Load Hi</button>
+        <div hx-get="http://localhost:3000/components/object" hx-trigger="mouseenter">Do the hi</div>
+        <div class="demo" classes="toggle faded:1s">I'm Fading! ⚡</div>
+         
+         
+         <div id="slide-it">
+            <h1>Initial Content</h1>
+            <button hx-get="/test_trigger_cases" hx-swap="innerHTML transition:true" hx-target="#slide-it">
+              Swap It!
+            </button>
+         </div>
+    </body>
+</html>
