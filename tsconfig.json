@@ -3,7 +3,7 @@
     "target": "es2017",
     "module": "commonjs",
     "lib": [ "es2015" ],
-    "types": ["node"]
+    "types": ["node"],
   },
   "ts-node": {
       "swc": true

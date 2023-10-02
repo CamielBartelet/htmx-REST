@@ -1,17 +1,16 @@
 import { v4 as uuidv4 } from "uuid";
-import { Items } from "../../../mock-data/items";
-
-let items = Items;
+import { ItemsTable } from "../../components/tableTemplate";
+let items = require("./../../../mock-data/testItems.json");
 
 export const getItems = (req, res) => {
-	res.send(items);
+	res.send(ItemsTable(items?.items));
 };
 
 export const getItem = (req, res) => {
 	const { id } = req.params;
-	const item = items.find((item) => item.id === id);
+	const item = items?.items.filter((item) => item.id === id);
 
-	res.send(item);
+	res.send(ItemsTable(item));
 };
 
 export const postItem = (req, res) => {
@@ -21,9 +20,9 @@ export const postItem = (req, res) => {
 		name: name,
 	};
 
-	items.push(item);
+	items["items"].push(item);
 
-	res.code(201).send(item);
+	res.code(201).send(ItemsTable(items?.items));
 };
 
 export const deleteItem = (req, res) => {
@@ -42,5 +41,5 @@ export const updateItem = (req, res) => {
 
 	let item = items.find((item) => item.id === id);
 
-	res.send(item);
+	res.send(ItemsTable(item));
 };

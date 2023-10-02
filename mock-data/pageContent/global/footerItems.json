@@ -1,0 +1,29 @@
+{
+	"footerItems": [
+		{
+			"id": "1",
+			"name": "Copyright",
+			"content": {
+				"special": "©",
+				"year": "2023",
+				"owner": "camiel"
+			}
+		},
+		{
+			"id": "2",
+			"name": "Contact",
+			"content": {
+				"email": "12345@email.com",
+				"external": "other_site"
+			}
+		},
+		{
+			"id": "3",
+			"name": "Socials",
+			"content": {
+				"facebook": "facebook.link",
+				"insta": "insta.link"
+			}
+		}
+	]
+}

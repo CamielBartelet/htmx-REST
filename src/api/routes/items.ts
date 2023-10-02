@@ -5,7 +5,6 @@ import {
 	deleteItem,
 	updateItem,
 } from "../controllers/items";
-import { Message } from "../../../mock-data/message";
 import fastifyBody from "@fastify/formbody";
 
 const Item = {
@@ -79,9 +78,10 @@ const updateItemOpts = {
 const ItemRoutes = (app, options, done) => {
 	app.addHook("onSend", async function (request, reply) {
 		reply.headers({
-			"HX-Trigger": "myEvent",
+			"HX-Trigger": '{"showMessage": "Here Is A Message"}',
 		});
 	});
+
 	//get all items
 	app.get("/items", getItemsOpts);
 

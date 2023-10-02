@@ -4,67 +4,53 @@
 <head>
     <script src="https://unpkg.com/htmx.org@1.9.4" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/debug.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <link href="/dist/output.css" rel="stylesheet">
+    <script>
+        window.addEventListener("showMessage", function (evt) {
+            console.log('he');
+            alert(evt.detail.value);
+        })
+    </script>
+    <style>
+        #fade-me-in.htmx-added {
+            opacity: 0;
+        }
+
+        #fade-me-in {
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+    </style>
 </head>
 
 <body>
-    <div hx-get="http://localhost:5000/items" hx-target="#result">Get items</div>
-    <div hx-get="http://localhost:5000/items">Gogo</div>
-    <form id="addForm" hx-post="http://localhost:5000/items" hx-target="#feedback-div" hx-trigger="submit">
-        <input type="text" name="name" hx-sync="closest form:abort">
+    <div class="btn btn-primary" hx-get="http://localhost:5000/items" hx-target="#result">Get items</div>
+    <div class="btn btn-primary" hx-get="http://localhost:5000/items/1" hx-target="#result">Get item</div>
+    <div class="btn btn-primary" hx-get="http://localhost:5000/items">Swap this element</div>
+    <br />
+    <br />
+    <form id="addForm" hx-post="http://localhost:5000/items" hx-target="#result" hx-trigger="submit">
+        <input class="input input-bordered w-full max-w-xs" type="text" name="name" hx-sync="closest form:abort">
     </form>
     <button class="btn btn-primary" type="submit" hx-post="http://localhost:5000/items" hx-include="#addForm"
-        hx-target="#feedback-div">Post
+        hx-target="#result">Post
         item</button>
-    <div hx-delete="http://localhost:5000/items/3" hx-target="#result">Delete items</div>
-    <div hx-update="http://localhost:5000/items/2" hx-target="#result">Update items</div>
-    <div hx-get="http://localhost:5000/items/1" hx-target="#result">Get item</div>
+    <br />
+    <br />
+    <div class="btn btn-primary" hx-delete="http://localhost:5000/items/3" hx-target="#result">Delete items</div>
+    <div class="btn btn-primary" hx-update="http://localhost:5000/items/2" hx-target="#result">Update items</div>
     <div id="feedback-div"></div>
-    <div id="result" hx-get="http://localhost:5000/items" hx-trigger="load"></div>
     <br />
     <br />
     <h2>Items-table</h2>
-    <div id="itemstable" class="overflow-x-auto">
-        <table class="table">
-            <!-- head -->
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- row 1 -->
-                <tr>
-                    <th></th>
-                    <td>Cy Ganderton</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Blue</td>
-                </tr>
-                <!-- row 2 -->
-                <tr>
-                    <th>2</th>
-                    <td>Hart Hagerty</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Purple</td>
-                </tr>
-                <!-- row 3 -->
-                <tr>
-                    <th>3</th>
-                    <td>Brice Swyre</td>
-                    <td>Tax Accountant</td>
-                    <td>Red</td>
-                </tr>
-            </tbody>
+    <div className="overflow-x-auto">
+        <table class="table-zebra" id="result" hx-get="http://localhost:5000/items" hx-trigger="load"></table>
         </table>
     </div>
+    <button id="fade-me-in" hx-get="http://localhost:3000/mock-data/test" hx-swap="outerHTML settle:2s">
+        Fade Me In
+    </button>
 </body>
-<script>
-    document.body.addEventListener("myEvent", function (evt) {
-        alert("myEvent was triggered!");
-    })
-</script>
 
 </html>

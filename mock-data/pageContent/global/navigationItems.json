@@ -1,0 +1,7 @@
+{
+	"navigationItems": [
+		{ "id": "1", "name": "home", "description": "Home" },
+		{ "id": "2", "name": "blog", "description": "Blog" },
+		{ "id": "3", "name": "about", "description": "About" }
+	]
+}
