@@ -23,6 +23,7 @@
 	"scripts": {
 		"start": "npx serve",
 		"log": "nodemon",
+		"build": "npm start",
 		"dev": "concurrently \"npm:start\" \"npm:log\""
 	},
 	"devDependencies": {
