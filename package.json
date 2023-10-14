@@ -5,6 +5,7 @@
 	"dependencies": {
 		"@fastify/cors": "^8.3.0",
 		"@fastify/formbody": "^7.4.0",
+		"@fastify/static": "^6.11.2",
 		"@fastify/swagger": "^8.9.0",
 		"@fastify/swagger-ui": "^1.9.3",
 		"@types/uuid": "^9.0.2",
@@ -22,9 +23,8 @@
 	},
 	"scripts": {
 		"start": "npx serve",
-		"log": "nodemon",
-		"build": "npm start",
-		"dev": "concurrently \"npm:start\" \"npm:log\""
+		"build": "nodemon",
+		"dev": "concurrently \"npm:start\" \"npm:build\""
 	},
 	"devDependencies": {
 		"@swc/core": "^1.3.79",

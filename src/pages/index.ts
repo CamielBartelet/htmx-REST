@@ -1,3 +1,6 @@
+// import Handlebars = require("handlebars");
+
+export const landingPage = `
 <!DOCTYPE html>
 <html>
 
@@ -48,13 +51,19 @@
 </head>
 
 <body>
-    <div class="headerWrapper sticky top-0" hx-get="http://localhost:5000/header" hx-trigger="load"></div>
+    <div class="headerWrapper sticky top-0" hx-get="/header" hx-trigger="load"></div>
     <div class="contentWrapper">
-        <div class="slide-it" id="result" hx-get="http://localhost:5000/home" hx-trigger="load"></div>
+        <div class="slide-it" id="result" hx-get="/home" hx-trigger="load"></div>
     </div>
     <div class="footerWrapper">
-        <div hx-get="http://localhost:5000/footer" hx-trigger="load"></div>
+        <div hx-get="/footer" hx-trigger="load"></div>
     </div>
 </body>
 
 </html>
+`;
+// const footerTemplateFunction = Handlebars.compile(footerTemplate);
+// export const Footer = (items) =>
+// 	footerTemplateFunction({
+// 		items: items,
+// 	});

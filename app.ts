@@ -1,13 +1,16 @@
 import * as dotenv from "dotenv";
-import { fastify } from "fastify";
+// import { fastify } from "fastify";
 import ItemRoutes from "./src/api/routes/items";
 import cors from "@fastify/cors";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 import GlobalRoutes from "./src/api/routes/global";
 
+const app = require("fastify")({ logger: true });
+
 dotenv.config();
-const app = fastify({ logger: true });
+// const app = fastify({ logger: true });
+const path = require("node:path");
 
 const swaggerOptions = {
 	swagger: {
@@ -16,7 +19,7 @@ const swaggerOptions = {
 			description: "Test cases vs htmx REST",
 			version: "1.0.0",
 		},
-		host: "localhost",
+		host: process.env.HOST_NAME,
 		schemes: ["http", "https"],
 		consumes: ["application/json"],
 		produces: ["application/json"],
@@ -45,7 +48,10 @@ app.register(cors, {
 	// 	// Generate an error on other origins, disabling access
 	// 	cb(new Error(`Not allowed ${hostname}`), false);
 	// },
-	origin: ["http://localhost:5000", "http://localhost:3000"],
+	origin: [
+		`http://${process.env.HOST_NAME}:5000`,
+		`http://${process.env.HOST_NAME}:3000`,
+	],
 });
 
 // app.register((app, options, done) => {
@@ -68,10 +74,15 @@ app.register(cors, {
 // 	done();
 // });
 
+app.register(require("@fastify/static"), {
+	// An absolute path containing static files to serve.
+	root: path.join(__dirname, "/public"),
+});
+
 app.listen(
 	{
-		port: 5000, // Pulled from env file.
-		host: "localhost",
+		port: 3000, // Pulled from env file.
+		host: process.env.HOST_NAME,
 	},
 	(err, address) => {
 		if (err) {

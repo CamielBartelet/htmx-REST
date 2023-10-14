@@ -15,7 +15,7 @@ const navBarTemplate = `
                     <div class="flex-none hidden lg:block">
                         <ul class="menu menu-horizontal">
                             {{#each items as |item itemId|}}
-                                <li key={{itemId}} hx-get="http://localhost:5000/{{item.name}}" hx-target="#result" hx-swap="innerHTML transition:true">
+                                <li key={{itemId}} hx-get="/{{item.name}}" hx-target="#result" hx-swap="innerHTML transition:true">
                                     <a>{{item.description}}</a>
                                 </li>
                             {{/each}}
@@ -27,7 +27,7 @@ const navBarTemplate = `
                 <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> 
                 <ul class="menu p-4 w-80 min-h-full bg-base-200">
                     {{#each items as |item itemId|}}
-                        <li key={{itemId}} hx-get="http://localhost:5000/{{item.name}}" hx-target="#result">
+                        <li key={{itemId}} hx-get="/{{item.name}}" hx-target="#result">
                             <a>{{item.description}}</a>
                         </li>
                     {{/each}}
