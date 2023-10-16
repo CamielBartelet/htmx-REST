@@ -1,10 +1,10 @@
 import * as dotenv from "dotenv";
 // import { fastify } from "fastify";
-import ItemRoutes from "./src/api/routes/items";
+import ItemRoutes from "./api/routes/items";
 import cors from "@fastify/cors";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
-import GlobalRoutes from "./src/api/routes/global";
+import GlobalRoutes from "./api/routes/global";
 
 const app = require("fastify")({ logger: true });
 
@@ -91,3 +91,5 @@ app.listen(
 		}
 	}
 );
+
+export default app;
